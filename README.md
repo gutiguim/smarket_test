@@ -11,6 +11,7 @@ Versão angular: 11.0.4
 Para executar o backend basta ir no diretório principal "smarket_test" e executar o seguintes comandos
 
 Rodar as migrações:
+python3 manage.py makemigrations
 python3 manage.py migrate tarefa_app
 
 Rodar o servidor:
