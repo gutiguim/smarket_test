@@ -1,0 +1,93 @@
+<div>
+    <div *ngIf="currentUsuario.id" class="edit-form">
+      <h4>Usuario</h4>
+      <form>
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            [(ngModel)]="currentUsuario.nome"
+            name="nome"
+          />
+        </div>
+      </form>
+  
+      <button class="badge badge-danger mr-2" (click)="deleteUsuario()">
+        Deletar
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateUsuario()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentUsuario.id">
+      <br />
+      <p>Cannot access this Usuario...</p>
+    </div>
+
+    <!-- COMPONENTE ADICIONAR TAREFAS -->
+    <div>
+      <div class="submit-form">
+        <h4>Tarefa</h4>
+          <div class="form-group">
+            <label for="descricao">Descrição</label>
+            <input
+              type="text"
+              class="form-control"
+              id="descricao"
+              required
+              [(ngModel)]="tarefa.descricao"
+              name="descricao"
+            />
+          </div>
+    
+          <button (click)="saveTarefa()" class="btn btn-success">Submit</button>
+      </div>
+    </div>
+      
+
+    <!-- COMPONENTE TAREFAS -->
+    <div class="list row">
+      <div class="col-md-6">
+        <h4>Lista de Tarefas</h4>
+        <ul class="list-group">
+          <li
+            class="list-group-item"
+            *ngFor="let tarefa of tarefas; let i = index"
+            [class.active]="i == currentIndex"
+            (click)="setActiveTarefa(tarefa, i)"
+          >
+            {{ tarefa.descricao }}
+            {{ tarefa.estadoTarefa }}
+          </li>
+        </ul>
+    
+      </div>
+      <div class="col-md-6">
+        <div *ngIf="currentTarefa">
+          <h4>Tarefa selecionada</h4>
+          <div>
+            <label><strong>Descricao:</strong></label> {{ currentTarefa.descricao }}
+            <label><strong>Estado:</strong></label> {{ currentTarefa.estadoTarefa }}
+          </div>
+    
+          <button
+            type="submit"
+            class="badge badge-success mb-2"
+            (click)="updateEstadoTarefa()"
+          >
+            Alterar estado
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
