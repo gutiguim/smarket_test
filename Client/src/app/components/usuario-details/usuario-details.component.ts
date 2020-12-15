@@ -39,7 +39,6 @@ export class UsuarioDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.message = '';
     this.getUsuario(this.route.snapshot.params.id);
-    // this.retrieveTarefas();
   }
 
   getUsuario(id: string): void {
@@ -61,18 +60,6 @@ export class UsuarioDetailsComponent implements OnInit {
         response => {
           console.log(response);
           this.message = response.message;
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  retrieveTarefas(): void {
-    this.tarefaService.getAll()
-      .subscribe(
-        data => {
-          this.tarefas = data;
-          console.log(data);
         },
         error => {
           console.log(error);
@@ -122,7 +109,7 @@ export class UsuarioDetailsComponent implements OnInit {
   }
 
   refreshList(): void {
-    this.retrieveTarefas();
+    this.findTarefaByUsuario();
     this.currentTarefa = undefined;
     this.currentIndex = -1;
   }
@@ -145,17 +132,4 @@ export class UsuarioDetailsComponent implements OnInit {
           console.log(error);
         });
   }
-
-  // getTarefa(id: string): void {
-  //   this.tarefaService.get(id)
-  //     .subscribe(
-  //       data => {
-  //         this.currentTarefa = data;
-  //         console.log(data);
-  //       },
-  //       error => {
-  //         console.log(error);
-  //       }
-  //     );
-  // }
 }
